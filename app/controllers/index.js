@@ -5,6 +5,7 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
 
+  title:'Coming Soon',
   emailAddress: '',
 
   actualEmailAddress: computed('emailAddress', function() {

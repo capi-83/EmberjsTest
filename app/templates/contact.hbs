@@ -1,1 +1,34 @@
-<h1>Contact</h1>
+{{#if title}}
+  <h1>{{title}}</h1>
+{{/if}}
+
+<p class="well well-sm">If you have any question or feedback please leave a message with your email address.</p>
+
+<div class="row">
+  <div class="col-md-6">
+
+    {{#if responseMessage}}
+
+      <br/>
+      <div class="alert alert-success">
+        <h4>Thank you! Your message is sent.</h4>
+      </div>
+
+    {{else}}
+
+      <div class="form-group has-feedback {{if validEmail 'has-success'}}">
+        <label>Your email address*:</label>
+        {{input type="email" class="form-control" placeholder="Your email address" value=email autofocus="autofocus"}}
+        {{#if validEmail}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}}
+      </div>
+      <div class="form-group has-feedback {{if validMessage 'has-success'}}">
+        <label>Your message*:</label>
+        {{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="5" value=message}}
+        {{#if validMessage}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}}
+      </div>
+      <button class="btn btn-success" {{action 'sendMessage'}} disabled={{isDisabled}} >Send</button>
+
+    {{/if}}
+
+  </div>
+</div>
