@@ -26,7 +26,7 @@
         {{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="5" value=message}}
         {{#if validMessage}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}}
       </div>
-      <button class="btn btn-success" {{action 'sendMessage'}} disabled={{isDisabled}} >Send</button>
+      <button class="btn btn-success" {{action 'sendMessage' model}} disabled={{isDisabled}} >Send</button>
 
     {{/if}}
 
