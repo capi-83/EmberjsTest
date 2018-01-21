@@ -1,7 +1,7 @@
 import { computed, observer } from '@ember/object';
-import { match, not } from '@ember/object/computed';
-//import { empty } from '@ember/object/computed';
+import { match } from '@ember/object/computed';
 import Controller from '@ember/controller';
+//import { empty } from '@ember/object/computed';
 
 export default Controller.extend({
 
@@ -9,15 +9,14 @@ export default Controller.extend({
   emailAddress: '',
 
   actualEmailAddress: computed('emailAddress', function() {
-    console.log('actualEmailAddress function is called: ', this.get('emailAddress'));
+    //console.log('actualEmailAddress function is called: ', this.get('emailAddress'));
   }),
 
   emailAddressChanged: observer('emailAddress', function() {
-    console.log('observer is called', this.get('emailAddress'));
+    //console.log('observer is called', this.get('emailAddress'));
   }),
 
   isValid: match('emailAddress', /^.+@.+\..+$/),
-  isDisabled: not('isValid'),
 
   actions: {
 
@@ -29,10 +28,12 @@ export default Controller.extend({
       const email = this.get('emailAddress');
 
       const newInvitation = this.store.createRecord('invitation', { email: email });
-      newInvitation.save();
 
-      this.set('responseMessage', `Thank you! We have just saved your email address: ${this.get('emailAddress')}`);
-      this.set('emailAddress', '');
+      newInvitation.save().then(response => {
+        this.set('responseMessage', `Thank you! We saved your email address with the following id: ${response.get('id')}`);
+        this.set('emailAddress', '');
+      });
+
 
     }
   }
