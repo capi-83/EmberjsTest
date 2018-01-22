@@ -1,5 +1,5 @@
-{{#if title}}
-  <h1>{{title}}</h1>
+{{#if modeL.title}}
+  <h1>{{model.title}}</h1>
 {{/if}}
 
 <p class="well well-sm">If you have any question or feedback please leave a message with your email address.</p>
@@ -16,17 +16,18 @@
 
     {{else}}
 
-      <div class="form-group has-feedback {{if validEmail 'has-success'}}">
+      <div class="form-group has-feedback {{if model.validEmail 'has-success'}}">
         <label>Your email address*:</label>
-        {{input type="email" class="form-control" placeholder="Your email address" value=email autofocus="autofocus"}}
-        {{#if validEmail}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}}
+        {{input type="email" class="form-control" placeholder="Your email address" value=model.email autofocus="autofocus"}}
+        {{#if model.validEmail}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}}
       </div>
-      <div class="form-group has-feedback {{if validMessage 'has-success'}}">
+      <div class="form-group has-feedback {{if model.validMessage 'has-success'}}">
         <label>Your message*:</label>
-        {{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="5" value=message}}
-        {{#if validMessage}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}}
+        {{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="5" value=model.message}}
+        {{#if model.validMessage}}<span class="glyphicon glyphicon-ok form-control-feedback"></span>{{/if}}
       </div>
-      <button class="btn btn-success" {{action 'sendMessage' model}} disabled={{isDisabled}} >Send</button>
+      <button class="btn btn-success" {{action 'sendMessage' model}} disabled={{model.isDisabled}}>Send</button>
+
 
     {{/if}}
 
